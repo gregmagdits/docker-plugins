@@ -1,6 +1,7 @@
 #!/bin/bash
 
 main() {
+    echo "starting ....."
 	mkdir -p "$PLUGIN_PATH/enabled" # until plugn ensures this for us
 	if [[ "$INSTALL" ]]; then
 		printf "%s\n" $INSTALL | xargs -L 1 plugn install
@@ -12,9 +13,9 @@ main() {
 	echo "Starting docker-plugins with:"
 	plugn list
 	if [[ "$DEBUG" ]]; then
-		dockerhook -d "/bin/plugn trigger"
+		dockerhook -d "plugn trigger"
 	else
-		dockerhook "/bin/plugn trigger"
+		dockerhook "plugn trigger"
 	fi
 }
 
