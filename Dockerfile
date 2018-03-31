@@ -17,6 +17,13 @@ ADD ./plugins /plugins
 ENV PLUGIN_PATH /plugins
 
 ADD setup.sh /
+RUN chmod +x /setup.sh
+RUN chown root:root setup.sh
 RUN bash -c "/setup.sh"
-ADD start.sh /start.sh
-CMD ["/start"]
+ADD start /start.sh
+RUN cp /root/go/src/github.com/gregmagdits/dockerhook/dockerhook /bin/dockerhook
+ADD https://github.com/dokku/plugn/releases/download/v0.3.0/plugn_0.3.0_linux_x86_64.tgz              /tmp/plugn.tgz
+RUN  cd /bin && tar -zxf /tmp/plugn.tgz && rm /tmp/plugn.tgz \
+    && chmod +x  /bin/plugn \
+    && chown root:root  /bin/plugn
+CMD ["/start.sh"]

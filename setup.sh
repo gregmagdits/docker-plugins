@@ -11,5 +11,3 @@ cd dockerhook
 go get 
 go build
 cd ~/go
-go get github.com/dokku/plugn
-mv ~/go/src/github.com/dokku/plugn /bin/plugn

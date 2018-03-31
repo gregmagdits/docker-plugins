@@ -13,9 +13,9 @@ main() {
 	echo "Starting docker-plugins with:"
 	plugn list
 	if [[ "$DEBUG" ]]; then
-		dockerhook -d "plugn trigger"
+		dockerhook -d "/bin/plugn trigger"
 	else
-		dockerhook "plugn trigger"
+		dockerhook "/bin/plugn trigger"
 	fi
 }
 
